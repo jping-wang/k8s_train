@@ -1,0 +1,20 @@
+# for prometheus-alertmanager
+# --------------------------
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv005
+spec:
+  capacity:
+    storage: 12Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /var/export/nfs/vol5
+    server: nfs
+

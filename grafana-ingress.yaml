@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+spec:
+  tls:
+  - hosts:
+    - grafana.example.com
+    secretName: graf-ingress
+  rules:
+  - host: grafana.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana-1593510299
+          servicePort: 80

@@ -1,0 +1,20 @@
+# for prometheus-server
+# ---------------------
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv003
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  # persistentVolumeReclaimPolicy: Recycle
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /var/export/nfs/vol3
+    server: nfs 
+

@@ -1,0 +1,22 @@
+# for WordPress/MariaDB Storage (manual deploy)
+# -----------------------------------------------
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv001
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /var/export/nfs/vol1
+    server: nfs
+  claimRef:
+    name: pvc-wordpress
+    namespace: wordpress-app

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tea
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      nodeSelector:
+        appdomain: 'tea'
+      containers:
+      - name: tea
+        image: nginxdemos/nginx-hello:plain-text
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+

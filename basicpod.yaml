@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testpod-1
+spec:
+  containers:
+    - name: testpod-x
+      image: docker.io/busybox
+      imagePullPolicy: IfNotPresent
+      command: [ '/bin/sh', '-c', 'sleep 600' ]
+      envFrom:
+      - configMapRef:
+          name: basic-conf
+  restartPolicy: Never
+

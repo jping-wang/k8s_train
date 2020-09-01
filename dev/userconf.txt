@@ -1,0 +1,4 @@
+USER1=admin
+USER2=editor
+USER3=user
+USER4=auditor

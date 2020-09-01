@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: coffee
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      nodeSelector:
+        appdomain: 'coffee'
+      containers:
+      - name: coffee
+        image: nginxdemos/nginx-hello:plain-text
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+
