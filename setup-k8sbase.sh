@@ -19,13 +19,12 @@ EOF
 sysctl --system
 
 ##### Docker Runtime #####
-yum-config-manager --add-repo \
-  https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y yum-utils
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
 
-yum update -y && yum install -y \
-  containerd.io-1.2.13 \
-  docker-ce-19.03.11 \
-  docker-ce-cli-19.03.11
+yum install docker-ce docker-ce-cli containerd.io
 
 # Set up the Docker daemon
 mkdir /etc/docker
@@ -55,6 +54,8 @@ repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 exclude=kubelet kubeadm kubectl
 EOF
+
+
 
 yum -y install kubelet kubeadm kubectl --disableexcludes=kubernetes
 
@@ -87,4 +88,5 @@ Notes:
 # kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=\$(kubectl version|base64|tr -d '\n')"
 
 EOF
+
 
